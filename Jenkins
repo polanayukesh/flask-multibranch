@@ -1,0 +1,20 @@
+pipeline {
+    agent any
+    stages {
+        stage('Install') {
+            steps {
+                sh 'pip install -r requirements.txt'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'pytest -v'
+            }
+        }
+        stage('Preview') {
+            steps {
+                echo "🌱 Preview build for FEATURE branch ${env.BRANCH_NAME}"
+            }
+        }
+    }
+}
